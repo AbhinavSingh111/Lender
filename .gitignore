@@ -1,0 +1,40 @@
+# === BACKEND (Flask) ===
+backend/__pycache__/
+backend/instance/
+backend/migrations/
+backend/venv/
+backend/.env
+backend/*.db
+backend/*.sqlite3
+backend/*.log
+*.pyc
+*.pyo
+*.pyd
+
+# === FRONTEND (React) ===
+frontend/node_modules/
+frontend/.env
+frontend/.next/
+frontend/build/
+frontend/dist/
+
+# === General (all platforms) ===
+*.log
+*.bak
+*.swp
+*.swo
+*.tmp
+*.cache
+.DS_Store
+.env
+.env.*
+*.local
+
+# === VS Code / IDEs ===
+.vscode/
+.idea/
+
+# === OS metadata ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
