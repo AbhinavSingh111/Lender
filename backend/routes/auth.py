@@ -137,5 +137,6 @@ def google_auth_callback():
     db.session.commit()
 
     access_token = create_access_token(identity=str(user.id))
-    frontend_url = "http://localhost:3000"
+    # frontend_url = "http://localhost:3000"
+    frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
     return redirect(f"{frontend_url}/google-login-success?token={access_token}")
