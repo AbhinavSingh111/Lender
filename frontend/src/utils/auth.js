@@ -21,7 +21,7 @@ export const logout = () => {
   window.location.href = "/";
 };
 
-import { jwtDecode } from "jwt-decode";
+
 
 export const getLoginMethod = () => {
   const token = localStorage.getItem("token");
