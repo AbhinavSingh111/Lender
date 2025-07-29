@@ -138,5 +138,5 @@ def google_auth_callback():
 
     access_token = create_access_token(identity=str(user.id))
     # frontend_url = "http://localhost:3000"
-    frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
+    frontend_url = os.getenv("FRONTEND_URL", "https://lender-eight.vercel.app")
     return redirect(f"{frontend_url}/google-login-success?token={access_token}")
