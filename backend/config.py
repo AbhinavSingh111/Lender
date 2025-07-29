@@ -14,8 +14,8 @@ FRONTEND_URL = os.getenv("FRONTEND_URL", "https://lender-eight.vercel.app")
 
 OAUTH2_CLIENT_ID = os.environ.get('OAUTH2_CLIENT_ID', '57198144557-0dhm107een1tmmf0v8btg73n89q1bs46.apps.googleusercontent.com')
 OAUTH2_CLIENT_SECRET = os.environ.get('OAUTH2_CLIENT_SECRET', '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')
-GOOGLE_REDIRECT_URI = os.environ.get('GOOGLE_REDIRECT_URI', 'http://127.0.0.1:5000/google/callback')
-
+# GOOGLE_REDIRECT_URI = os.environ.get('GOOGLE_REDIRECT_URI', 'http://127.0.0.1:5000/google/callback')
+GOOGLE_REDIRECT_URI = os.environ.get('GOOGLE_REDIRECT_URI', 'https://lender-92ui.onrender.com/google/callback')
 
 # Google OAuth configuration
 GOOGLE_CLIENT_SECRET_JSON = os.getenv("GOOGLE_CLIENT_SECRET_JSON")  # This will be set in your deployment platform
