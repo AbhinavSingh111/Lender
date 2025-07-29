@@ -10,7 +10,7 @@ SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', 'wkpt plbr zdvw xmfp')
 SMTP_SERVER = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
 SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "https://lender-eight.vercel.app/")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://lender-eight.vercel.app")
 
 OAUTH2_CLIENT_ID = os.environ.get('OAUTH2_CLIENT_ID', '57198144557-0dhm107een1tmmf0v8btg73n89q1bs46.apps.googleusercontent.com')
 OAUTH2_CLIENT_SECRET = os.environ.get('OAUTH2_CLIENT_SECRET', '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')
