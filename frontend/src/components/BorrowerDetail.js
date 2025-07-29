@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { Typography, Box, Button, List, ListItem, ListItemText, Paper, Chip, Divider, TextField, Snackbar, Alert, Stack } from "@mui/material";
-import { getLoginMethod } from './utils/auth';
+import { getLoginMethod } from '../utils/auth';
 
 function BorrowerDetail() {
   const { id } = useParams();
