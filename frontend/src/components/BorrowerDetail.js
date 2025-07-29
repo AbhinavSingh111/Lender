@@ -174,7 +174,7 @@ function BorrowerDetail() {
               sx={{ mt: 2 }}
               onClick={handleBackupDownload}
             >
-              Download Backup
+              Download Backup (only if logged in with Google)
           </Button>
         </Stack>
 
