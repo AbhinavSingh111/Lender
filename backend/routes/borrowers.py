@@ -11,14 +11,14 @@ borrowers_bp = Blueprint('borrowers', __name__)
 @borrowers_bp.route('/borrowers', methods=['GET'])
 @jwt_required()
 def get_borrowers():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     borrowers = Borrower.query.filter_by(user_id=user_id).all()
     return jsonify([{"id": b.id, "name": b.name, "email": b.email, "fully_paid": b.fully_paid, "outstanding": b.calculate_outstanding()} for b in borrowers ])
 
 @borrowers_bp.route('/borrowers', methods=['POST'])
 @jwt_required()
 def add_borrower():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     data = request.get_json()
     borrower = Borrower(
         name=data['name'],
@@ -51,7 +51,7 @@ def add_borrower():
 @borrowers_bp.route('/borrowers/<int:id>', methods=['GET'])
 @jwt_required()
 def get_borrower_detail(id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     borrower = Borrower.query.filter_by(id=id, user_id=user_id).first_or_404()
     lendings = [{"id": l.id, "amount": l.amount, "note": l.note, "date": l.date} for l in borrower.lendings]
     repayments = [{"id": r.id, "amount": r.amount, "note": r.note, "date": r.date} for r in borrower.repayments]
@@ -78,7 +78,7 @@ def get_borrower_detail(id):
 @borrowers_bp.route('/borrowers/<int:id>/mark_paid', methods=['POST'])
 @jwt_required()
 def mark_paid(id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     borrower = Borrower.query.filter_by(id=id, user_id=user_id).first_or_404()
     if borrower.calculate_outstanding() == 0:
         borrower.fully_paid = True
@@ -90,7 +90,7 @@ def mark_paid(id):
 @borrowers_bp.route('/borrowers/<int:id>', methods=['PUT'])
 @jwt_required()
 def update_borrower(id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     borrower = Borrower.query.filter_by(id=id, user_id=user_id).first_or_404()
 
     data = request.get_json()

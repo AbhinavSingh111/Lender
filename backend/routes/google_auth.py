@@ -146,7 +146,7 @@ def google_login():
 @google_bp.route('/google/callback')
 @jwt_required()
 def google_callback():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
 
     if not user:
@@ -229,7 +229,7 @@ def google_callback():
 @google_bp.route('/google/create-backup', methods=['POST'])
 @jwt_required()
 def create_backup():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
 
     if not user:

@@ -9,7 +9,7 @@ export_bp = Blueprint('export', __name__)
 @export_bp.route('/export', methods=['GET'])
 @jwt_required()
 def export_data():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     format = request.args.get('format', 'json')
     borrowers = Borrower.query.filter_by(user_id=user_id).all()
     data = []

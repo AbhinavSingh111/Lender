@@ -10,7 +10,7 @@ lendings_bp = Blueprint('lendings', __name__)
 @lendings_bp.route('/lendings', methods=['POST'])
 @jwt_required()
 def add_lending():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     data = request.get_json()
     borrower = Borrower.query.filter_by(id=data['borrower_id'], user_id=user_id).first_or_404()

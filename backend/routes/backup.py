@@ -13,7 +13,7 @@ backup_bp = Blueprint("backup", __name__)
 @backup_bp.route("/backup/download", methods=["GET"])
 @jwt_required()
 def download_backup():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
 
     if not user or not user.google_sheet_id:

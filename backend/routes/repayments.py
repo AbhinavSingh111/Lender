@@ -9,7 +9,7 @@ repayments_bp = Blueprint('repayments', __name__)
 @repayments_bp.route('/repayments', methods=['POST'])
 @jwt_required()
 def add_repayment():
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     data = request.get_json()
     borrower = Borrower.query.filter_by(id=data['borrower_id'], user_id=user_id).first_or_404()
