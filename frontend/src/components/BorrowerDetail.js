@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { Typography, Box, Button, List, ListItem, ListItemText, Paper, Chip, Divider, TextField, Snackbar, Alert, Stack } from "@mui/material";
+import { getLoginMethod } from './utils/auth';
 
 function BorrowerDetail() {
   const { id } = useParams();
@@ -13,6 +14,7 @@ function BorrowerDetail() {
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
   const navigate = useNavigate();
 
+
   useEffect(() => {
     fetchBorrower();
   }, [id]);
@@ -22,6 +24,8 @@ function BorrowerDetail() {
       .then(res => setBorrower(res.data))
       .catch(() => setBorrower(null));
   };
+
+  const loginMethod = getLoginMethod();
 
  const handleBackupDownload = () => {
   axios.get(`/backup/download`, {
@@ -173,8 +177,9 @@ function BorrowerDetail() {
               fullWidth
               sx={{ mt: 2 }}
               onClick={handleBackupDownload}
+              disabled={loginMethod !== "google"}
             >
-              Download Backup (only if logged in with Google)
+              Download Backup
           </Button>
         </Stack>
 

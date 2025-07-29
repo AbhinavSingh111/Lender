@@ -21,3 +21,15 @@ export const logout = () => {
   window.location.href = "/";
 };
 
+import { jwtDecode } from "jwt-decode";
+
+export const getLoginMethod = () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.auth_provider || "unknown";
+  } catch {
+    return "unknown";
+  }
+}

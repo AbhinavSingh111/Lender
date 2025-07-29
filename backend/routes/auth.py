@@ -48,7 +48,7 @@ def login():
     user = User.query.filter_by(email=email).first()
     if not user or not check_password_hash(user.password_hash, password):
         return jsonify({"msg": "Invalid credentials"}), 401
-    access_token = create_access_token(identity=str(user.id))
+    access_token = create_access_token(identity=str(user.id), additional_claims={"auth_provider": "local"})
     return jsonify(access_token=access_token), 200
 
 
@@ -136,7 +136,7 @@ def google_auth_callback():
 
     db.session.commit()
 
-    access_token = create_access_token(identity=str(user.id))
+    access_token = create_access_token(identity=str(user.id), additional_claims={"auth_provider": "google"})
     # frontend_url = "http://localhost:3000"
     frontend_url = os.getenv("FRONTEND_URL", "https://lender-eight.vercel.app")
     return redirect(f"{frontend_url}/google-login-success?token={access_token}")
