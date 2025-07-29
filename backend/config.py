@@ -3,7 +3,7 @@ import json
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "your-secret-key")
 # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///lender.db")
-SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "postgresql://neondb_owner:npg_LKe2ylkJI8YE@ep-tiny-darkness-a1bip3ci-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require")
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "postgresql+psycopg://neondb_owner:npg_LKe2ylkJI8YE@ep-tiny-darkness-a1bip3ci-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "your-jwt-secret-key")
 SMTP_SENDER_EMAIL = os.environ.get('SMTP_SENDER_EMAIL', 'shutupnbouncebaby@gmail.com')
