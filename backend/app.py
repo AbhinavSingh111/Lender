@@ -12,7 +12,7 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 jwt = JWTManager(app)
-CORS(app , supports_credentials=True) # restrict to frontend domain in production
+CORS(app,resources={r"/*": {"origins": ["http://localhost:3000", "https://lender-eight.vercel.app"]}},supports_credentials=True) # restrict to frontend domain in production
 
 
 
