@@ -26,12 +26,19 @@ from routes.google_auth import google_bp
 from routes.backup import backup_bp
 
 app.register_blueprint(google_bp)
+CORS(google_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 app.register_blueprint(auth_bp)
+CORS(auth_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 app.register_blueprint(borrowers_bp)
+CORS(borrowers_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 app.register_blueprint(lendings_bp)
+CORS(lendings_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 app.register_blueprint(repayments_bp)
+CORS(repayments_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 app.register_blueprint(export_bp)
+CORS(export_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 app.register_blueprint(backup_bp)
+CORS(backup_bp, supports_credentials=True, origins=["https://lender-eight.vercel.app"])
 
 @app.route("/")
 def home():
