@@ -50,7 +50,7 @@ function BorrowerList() {
         <List>
           {loading ? (
             <ListItem>
-              <ListItemText primary="Loading borrowers..." />
+              <ListItemText primary="Take a deep breath, we are getting it for you..." />
             </ListItem>
           ) : outstandingBorrowers.length === 0 ? (
             <ListItem>
