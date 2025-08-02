@@ -80,7 +80,9 @@ function LendingForm() {
           color="secondary"
           fullWidth
           sx={{ mb: 2 }}
-          onClick={() => setOpen(true)}
+          onClick={() => {setOpen(true);
+            setAddMsg("");
+          }}
         >
           + Add New Borrower
         </Button>

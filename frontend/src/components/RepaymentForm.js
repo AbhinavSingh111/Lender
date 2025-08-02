@@ -54,7 +54,9 @@ function RepaymentForm() {
           <Select
             fullWidth
             value={borrowerId}
-            onChange={e => setBorrowerId(e.target.value)}
+            onChange={e => {setBorrowerId(e.target.value);
+              setMsg("");
+            }}
             displayEmpty
             sx={{ mb: 2 }}
           >
