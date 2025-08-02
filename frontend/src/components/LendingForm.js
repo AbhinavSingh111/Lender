@@ -80,9 +80,7 @@ function LendingForm() {
           color="secondary"
           fullWidth
           sx={{ mb: 2 }}
-          onClick={() => {setOpen(true);
-            setAddMsg("");
-          }}
+          onClick={() => {setOpen(true)}}
         >
           + Add New Borrower
         </Button>
@@ -90,7 +88,9 @@ function LendingForm() {
           <Select
             fullWidth
             value={borrowerId}
-            onChange={e => setBorrowerId(e.target.value)}
+            onChange={e => {setBorrowerId(e.target.value);
+            setMsg("");
+            }}
             displayEmpty
             sx={{ mb: 2 }}
           >
