@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 function BorrowerList() {
   const [borrowers, setBorrowers] = useState([]);
+  const [loading, setLoading] = useState(true);  // NEW
   const navigate = useNavigate();
   const outstandingBorrowers = filterOutstandingBorrowers(borrowers);
   useEffect(() => {
     axios.get("/borrowers")
       .then(res => setBorrowers(res.data))
-      .catch(() => setBorrowers([]));
+      .catch(() => setBorrowers([]))
+      .finally(() => setLoading(false));  // stop loading
   }, []);
 
   return (
@@ -46,36 +48,39 @@ function BorrowerList() {
           Add Lending
         </Button>
         <List>
-          {outstandingBorrowers.length === 0 && (
+          {loading ? (
+            <ListItem>
+              <ListItemText primary="Loading borrowers..." />
+            </ListItem>
+          ) : outstandingBorrowers.length === 0 ? (
             <ListItem>
               <ListItemText primary="No borrowers found." />
             </ListItem>
+          ) : (
+            outstandingBorrowers.map(b => (
+              <ListItem
+                key={b.id}
+                sx={{
+                  bgcolor: "#f5f5f5",
+                  mb: 1,
+                  borderRadius: 1,
+                  cursor: "pointer",
+                  "&:hover": { bgcolor: "#e3f2fd" }
+                }}
+                onClick={() => navigate(`/borrower/${b.id}`)}
+              >
+                <ListItemText
+                  primary={b.name}
+                  secondary={b.email || "No email"}
+                />
+                {b.fully_paid ? (
+                  <Chip label="Paid" color="success" size="small" sx={{ ml: 2 }} />
+                ) : (
+                  <Chip label={b.outstanding} color="error" size="small" sx={{ ml: 2 }} />
+                )}
+              </ListItem>
+            ))
           )}
-
-          {outstandingBorrowers.map(b => (
-            <ListItem
-              key={b.id}
-              button="true"
-              sx={{
-                bgcolor: "#f5f5f5",
-                mb: 1,
-                borderRadius: 1,
-                cursor: "pointer",
-                "&:hover": { bgcolor: "#e3f2fd" }
-              }}
-              onClick={() => navigate(`/borrower/${b.id}`)}
-            >
-              <ListItemText
-                primary={b.name}
-                secondary={b.email ? b.email : "No email"}
-              />
-              {b.fully_paid ? (
-                <Chip label="Paid" color="success" size="small" sx={{ ml: 2 }} />
-              ) : (
-                <Chip label={b.outstanding} color="error" size="small" sx={{ ml: 2 }} />
-              )}
-            </ListItem>
-          ))}
         </List>
       </Paper>
     </Box>
